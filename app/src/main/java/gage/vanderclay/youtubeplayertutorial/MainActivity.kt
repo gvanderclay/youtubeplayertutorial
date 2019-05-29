@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener  {
         if(wasRestored) {
             player.play()
         } else {
-            player.cueVideo("jNQXAC9IVRw")
+            player.cueVideo("oHg5SJYRHA0")
             player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
         }
     }
