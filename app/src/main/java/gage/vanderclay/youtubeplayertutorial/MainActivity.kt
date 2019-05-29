@@ -2,32 +2,17 @@ package gage.vanderclay.youtubeplayertutorial
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerSupportFragment
+import android.widget.Button
+import com.google.android.youtube.player.YouTubeStandalonePlayer
 
-class MainActivity : AppCompatActivity(), YouTubePlayer.OnInitializedListener  {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val youTubePlayerFragment = supportFragmentManager.findFragmentById(R.id.youtube_fragment) as YouTubePlayerSupportFragment;
-        youTubePlayerFragment.initialize("dummy", this);
-    }
-
-    override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
-        if(player == null) return
-
-        if(wasRestored) {
-            player.play()
-        } else {
-            player.cueVideo("oHg5SJYRHA0")
-            player.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+        val button = findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            val intent = YouTubeStandalonePlayer.createVideoIntent(this, "XXXX", "oHg5SJYRHA0");
+            startActivity(intent);
         }
     }
-
-    override fun onInitializationFailure(provider: YouTubePlayer.Provider?, result: YouTubeInitializationResult?) {
-        Log.d("Youtube Player", "Failed to initialize");
-    }
-
 }
